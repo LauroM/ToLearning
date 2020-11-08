@@ -196,15 +196,27 @@ const ProfileScreen = () => {
               placeholderTextColor="#999"
               autoCorrect={true}
               value={newTask}
-              placeholder="Adicione uma tarefa"
+              placeholder="New task"
               maxLength={25}
               onChangeText={text => setNewTask(text)}
             />
-            <TouchableOpacity style={styles.Button} onPress={() => addTask()}>
-              <Ionicons name="ios-add" size={20} color="white" />
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.Button} onPress={() => addTask()}>
+            <Ionicons name="ios-add" size={20} color="white" />
+          </TouchableOpacity>
           </View>
-        
+
+          <View style={styles.Form}>
+            <TextInput
+              style={styles.InputDesc}
+              placeholderTextColor="#999"
+              autoCorrect={true}
+              value={newTask}
+              placeholder="Description"
+              maxLength={100}
+              onChangeText={text => setNewTask(text)}
+            />
+          </View>
+                 
         
         </View>
       </KeyboardAvoidingView>
@@ -239,6 +251,16 @@ const styles = StyleSheet.create({
   Input: {
     flex: 1,
     height: 40,
+    backgroundColor: "#eee",
+    borderRadius: 4,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: "#eee"
+  },
+  InputDesc: {
+    flex: 1,
+    height: 70,
     backgroundColor: "#eee",
     borderRadius: 4,
     paddingVertical: 5,

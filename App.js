@@ -31,9 +31,28 @@ const App = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: 'To Learning' }}
+          options={
+            {
+              title: 'To Learning',
+              headerTintColor: 'white', 
+              headerStyle: {
+                backgroundColor: '#2196F3'
+              } 
+            }
+          }
+
         />
-        <Stack.Screen name="New Task" component={ProfileScreen} />
+        <Stack.Screen name="New Task" component={ProfileScreen}
+          options={
+            {
+              headerTintColor: 'white', 
+              headerStyle: {
+                backgroundColor: '#2196F3'
+              } 
+            }
+          }
+        
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -163,7 +182,6 @@ const ProfileScreen = () => {
 
   return (
     <>
-
       <KeyboardAvoidingView
         keyboardVerticalOffset={0}
         behavior="padding"
@@ -172,7 +190,6 @@ const ProfileScreen = () => {
       >
         <View style={styles.container}>
 
-          
           <View style={styles.Form}>
             <TextInput
               style={styles.Input}
@@ -195,20 +212,15 @@ const ProfileScreen = () => {
   );
 };
 
-//     <Header
-//       leftComponent={{ icon: 'menu', color: '#fff' }}
-//       centerComponent={{ text: 'To Learning', style: { color: '#fff' } }}
-//       rightComponent={{ icon: 'home', color: '#fff' }}
-//     >
-//     </Header>
 
 
+// Estilos da pagina
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
     paddingVertical: 20,
-    marginTop: 20,
+    marginTop: 0,
     backgroundColor: "#FFF"
   },
   Body: {

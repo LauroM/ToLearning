@@ -104,7 +104,12 @@ const HomeScreen = ({ navigation }) => {
               renderItem={({ item }) => (
                 <View style={styles.ContainerView}>
                   
-                  <Text style={styles.Texto}>{item.nome}</Text>
+                  <View style={styles.divDisplayData}>
+                    <Text style={styles.Texto}>Name: {item.nome}</Text>
+                  </View>
+                  <View style={styles.divDisplayData}>
+                    <Text style={styles.Texto}>{item.desc}</Text>
+                  </View>
                   
                   <View style={styles.divDisplayData}>
                     <MaterialIcons name="access-time" size={25} />
@@ -197,7 +202,7 @@ const ProfileScreen = () => {
       >
         <View style={styles.container}>
 
-          <View style={styles.Form}>
+          <View style={styles.FormDesc}>
             <TextInput
               style={styles.Input}
               placeholderTextColor="#999"
@@ -219,7 +224,7 @@ const ProfileScreen = () => {
               autoCorrect={true}
               value={descriptionTask}
               placeholder="Description"
-              maxLength={100}
+              maxLength={50}
               onChangeText={text => setDescriptionTask(text)}
             />
           </View>
@@ -233,6 +238,7 @@ const ProfileScreen = () => {
               value={de}
               placeholder="From"
               maxLength={8}
+              required={true}
               keyboardType="numeric"
               onChangeText={text => setDe(text)}
             />
@@ -243,6 +249,7 @@ const ProfileScreen = () => {
               value={ate}
               placeholder="Until"
               maxLength={8}
+              required={true}
               keyboardType="numeric"
               onChangeText={text => setAte(text)}
             />
@@ -288,6 +295,14 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderColor: "#eee"
   },
+  FormDesc: {
+    height: 70,
+    alignSelf: "stretch",
+    flexDirection: "row",
+    paddingTop: 30,
+    borderTopWidth: 1,
+    borderColor: "#eee"
+  },
   Input: {
     flex: 1,
     height: 40,
@@ -299,8 +314,9 @@ const styles = StyleSheet.create({
     borderColor: "#eee"
   },
   InputDesc: {
-    flex: 1,
+
     height: 70,
+    width: '80%',
     backgroundColor: "#eee",
     borderRadius: 4,
     paddingVertical: 5,
@@ -343,7 +359,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 4,
     backgroundColor: "#eee",
-
+    flexWrap: "wrap",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -351,12 +367,9 @@ const styles = StyleSheet.create({
     borderColor: "#eee"
   },
   divDisplayData: {
-    //padding: 0,
-    //height: 60,
     justifyContent: "space-around",
     alignSelf: "stretch",
     flexDirection: "row",
-    paddingTop: 30,
     borderTopWidth: 1,
     borderColor: "#eee"
   }

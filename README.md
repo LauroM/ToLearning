@@ -33,9 +33,9 @@ Caso você responda "não" a qualquer uma dessas questões, justifique o porquê
 - [ ] A aplicação é original e não uma cópia da aplicação de um colega ou de uma aplicação já existente?
 - [x] A aplicação tem pelo menos duas interfaces (telas ou páginas) independentes?
 - [x] A aplicação armazena e usa de forma relevante dados complexos do usuário?
-- [x] A aplicação possui um manifesto para instalação no dispositivo do usuário?
-- [x] A aplicação possui um service worker que permite o funcionamento off-line?
-- [x] O código da minha aplicação possui comentários explicando cada operação?
+- [x] A aplicação tem um componente com rolagem?
+- [ ] A aplicação tem um campo de formulário que é devidamente tratado?
+- [ ] O código da minha aplicação possui comentários explicando cada operação?
 - [x] A aplicação está funcionando corretamente?
 - [ ] A aplicação está completa?
 

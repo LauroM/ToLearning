@@ -43,8 +43,10 @@ Justificativas:
 
 1. A aplicação é original e não uma cópia da aplicação de um colega ou de uma aplicação já existente?
     - Não é cópia, e também não é original,pois é similar a um TO-DO list. A ideia é o usuário estudar e acompanhar o progresso nos conteúdos.
-2. A aplicação está completa?
-    - Não, a aplicação contém mais funcionalidades não aplicadas.
+2. A aplicação tem um campo de formulário que é devidamente tratado?
+    - Tem o formulário, entretanto sem alguns tratamentos.
+3. A aplicação está completa?
+    - Não, a aplicação contém mais funcionalidades não aplicada.
 
 ## Links
 [GitHub](https://github.com/LauroM/ToLearning).

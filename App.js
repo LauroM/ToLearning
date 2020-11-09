@@ -61,14 +61,10 @@ const App = () => {
 
 const HomeScreen = ({ navigation }) => {
 
-  const [task, setTask] = useState([]);
+  const [task, setTask] = useState([{}]);
  
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
   async function removeTask(item) {
     setTask(task.filter(tasks => tasks !== item))
-
   }
 
   useEffect(() => {
@@ -107,14 +103,15 @@ const HomeScreen = ({ navigation }) => {
               style={styles.FlatList}
               renderItem={({ item }) => (
                 <View style={styles.ContainerView}>
-                  {/* <Switch
-                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                    thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}>
-                  </Switch> */}
-                  <Text style={styles.Texto}>{item}</Text>
+                  
+                  <Text style={styles.Texto}>{item.nome}</Text>
+                  
+                  <View style={styles.divDisplayData}>
+                    <MaterialIcons name="access-time" size={25} />
+                    <Text style={styles.Texto}>{item.de} - {item.ate}</Text>
+                  </View>
+                  
+                  
                   <TouchableOpacity onPress={() => removeTask(item)}>
                     <MaterialIcons
                       name="delete-forever"
@@ -143,18 +140,28 @@ const HomeScreen = ({ navigation }) => {
 
 
 const ProfileScreen = () => {
-  const [task, setTask] = useState([]);
+  const [task, setTask] = useState([{}]);
   const [newTask, setNewTask] = useState("");
+  const [descriptionTask, setDescriptionTask] = useState("");
+  const [de, setDe] = useState("");
+  const [ate, setAte] = useState("");
 
   async function addTask() {
-    const search = task.filter(task => task === newTask);
-
-    if (search.length !== 0) {
-      Alert.alert("Atenção", "Nome da tarefa repetido!");
+    
+    if (newTask.length == 0 || newTask.trim() == "") {
+      Alert.alert("Atenção", "Informe o nome da tarefa");
       return;
     }
 
-    setTask([...task, newTask]);
+    if(de.length == 0 || ate.length == 0){
+      Alert.alert("Atenção", "Informe o periodo de estudo");
+      return;
+    }
+    
+    const nDe = de.toString().slice(0,2) + "/" + de.toString().slice(2,4)+"/"+de.toString().slice(4,8);
+    const nAte = ate.toString().slice(0,2) + "/" + ate.toString().slice(2,4)+"/"+ate.toString().slice(4,8);
+    
+    setTask([...task, {"nome": newTask, "desc":descriptionTask,"de": nDe, "ate":nAte}]);
     setNewTask("");
 
     Keyboard.dismiss();
@@ -210,14 +217,36 @@ const ProfileScreen = () => {
               style={styles.InputDesc}
               placeholderTextColor="#999"
               autoCorrect={true}
-              value={newTask}
+              value={descriptionTask}
               placeholder="Description"
               maxLength={100}
-              onChangeText={text => setNewTask(text)}
+              onChangeText={text => setDescriptionTask(text)}
             />
           </View>
-                 
-        
+
+          <View style={styles.FormData}>
+
+            <TextInput
+              style={styles.InputData}
+              placeholderTextColor="#999"
+              autoCorrect={true}
+              value={de}
+              placeholder="From"
+              maxLength={8}
+              keyboardType="numeric"
+              onChangeText={text => setDe(text)}
+            />
+            <TextInput
+              style={styles.InputData}
+              placeholderTextColor="#999"
+              autoCorrect={true}
+              value={ate}
+              placeholder="Until"
+              maxLength={8}
+              keyboardType="numeric"
+              onChangeText={text => setAte(text)}
+            />
+          </View>
         </View>
       </KeyboardAvoidingView>
     </>
@@ -246,6 +275,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingTop: 13,
     borderTopWidth: 1,
+    borderColor: "#eee",
+    paddingBottom:30
+  },
+  FormData: {
+    //padding: 0,
+    height: 60,
+    justifyContent: "space-around",
+    alignSelf: "stretch",
+    flexDirection: "row",
+    paddingTop: 30,
+    borderTopWidth: 1,
     borderColor: "#eee"
   },
   Input: {
@@ -261,6 +301,16 @@ const styles = StyleSheet.create({
   InputDesc: {
     flex: 1,
     height: 70,
+    backgroundColor: "#eee",
+    borderRadius: 4,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: "#eee"
+  },
+  InputData: {
+    height: 40,
+    width: '30%',
     backgroundColor: "#eee",
     borderRadius: 4,
     paddingVertical: 5,
@@ -298,6 +348,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     borderWidth: 1,
+    borderColor: "#eee"
+  },
+  divDisplayData: {
+    //padding: 0,
+    //height: 60,
+    justifyContent: "space-around",
+    alignSelf: "stretch",
+    flexDirection: "row",
+    paddingTop: 30,
+    borderTopWidth: 1,
     borderColor: "#eee"
   }
 });
